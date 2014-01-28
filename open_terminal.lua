@@ -2,7 +2,7 @@ local M = {}
 
 
 ---[[ open terminal here
-function M.openTerminalHere()
+function openTerminalHere()
   terminalString = "urxvt"
   pathString = "~"
   if buffer.filename then
