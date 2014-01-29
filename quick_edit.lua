@@ -1,17 +1,13 @@
-local M = {}
-
-
----[[ quick reset
-function M.quick_reset()
-  _G.reset()
- end
---]]
+M = {}
 
 ---[[ edit textadept init.lua
-function M.tae()
+local function tae()
   io.open_file(_USERHOME .. "/init.lua")
 end
 --]]
 
 
+setmetatable(M, {
+  __call = tae
+})
 return M

@@ -2,7 +2,7 @@ local M = {}
 
 
 ---[[ open terminal here
-function openTerminalHere()
+local function openTerminalHere()
   terminalString = "urxvt"
   pathString = "~"
   if buffer.filename then
@@ -11,5 +11,10 @@ function openTerminalHere()
   io.popen(terminalString.." -cd "..pathString.." &")
 end
 --]]
+
+
+setmetatable(M, {
+  __call = openTerminalHere
+})
 
 return M

@@ -1,7 +1,7 @@
 local M = {}
 
 ---[[ delete a line
-function get_sel_lines()
+local function get_sel_lines()
   if #buffer:get_sel_text() == 0 then
     return buffer:line_from_position(buffer.current_pos),
       buffer:line_from_position(buffer.current_pos)
@@ -16,7 +16,7 @@ function get_sel_lines()
 end
 
 -- Deletes the currently selected lines
-function M.delete_lines()
+local function delete_lines()
   buffer:begin_undo_action()
   local startLine, endLine = get_sel_lines()
   if buffer.current_pos == buffer.selection_end then
@@ -38,5 +38,8 @@ function M.delete_lines()
 end
 --]]
 
+setmetatable(M, {
+  __call = delete_lines
+})
 
 return M
