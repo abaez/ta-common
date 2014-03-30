@@ -28,6 +28,10 @@ events.connect(events.INITIALIZED, function()
   keys['cae'] = {M.quick_edit}
   -- selects all similar words and puts a cursor on it!
   keys["cG"] = {M.multiedit.select_all}
+
+  -- reset
+  keys["cesc"] = {_G.reset}
+
 end)
 
 return M
