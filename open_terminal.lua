@@ -3,12 +3,12 @@ local M = {}
 
 ---[[ open terminal here
 local function openTerminalHere()
-  terminalString = "urxvt"
+  terminalString = "termite"
   pathString = "~"
   if buffer.filename then
     pathString = (buffer.filename or ''):match('^.+[//]')
   end
-  io.popen(terminalString.." -cd "..pathString.." &")
+  io.popen(terminalString.." -d "..pathString.." &")
 end
 --]]
 

@@ -10,22 +10,16 @@
 -- A simple list to locate themes to apply. Follows the 8 hour work schedule
 -- for the brightness of the theme.
 -- @table by_17
-local by_17 = {
-  "solarized",
-  "atelierheath",
-  "ocean",
-  "tomorrow",
-  "mocha",
-  "railscasts",
-  "eighties",
-  "atelierdune",
-}
+local by_17 = {}
 
+for theme in io.popen("ls ~/.textadept/themes"):lines() do
+  by_17[#by_17 + 1] = theme:gsub("%.lua", "")
+end
 
 --- picks the theme by hour.
 -- @function pick
 -- @return a table that holds theme type(light, dark) and the theme.
-local function pick()
+local function pick(t)
   local hour = os.date("*t")["hour"]
 
   local background
@@ -34,22 +28,32 @@ local function pick()
   else
     background = "-dark"
   end
+
+  local done = t[math.random(1,#t)]
+
+  while not done:match(background) do
+    done = t[math.random(1,#t)]
+  end
+
   -- note: need to use for the refresh.
-  return {background, hour % #by_17 + 1}
+  return {done, background}
 end
+
 
 --- changes the theme according to pick.
 -- @function change
 local function change()
   ui.set_theme(
-  'base16-'.. by_17[pick()[2]] .. pick()[1],
-  {font = "Inconsolata",
-  fontsize = 14}
+    pick(by_17)[1],
+    {
+      font = "Inconsolata",
+      fontsize = 14
+    }
   )
 end
 
 --- @export
 return {
   change = change,
-  pick = pick
+  background = pick(by_17)[2]
 }
