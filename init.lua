@@ -2,7 +2,6 @@ local lfs = require 'lfs'
 
 local M = {}
 
-
 for filename in lfs.dir(_USERHOME..'/modules/common/') do
   if filename:find('%.lua$') and filename ~= 'init.lua' then
 
@@ -21,7 +20,11 @@ end
 
 events.connect(events.INITIALIZED, function()
   -- deletes a line ore a selection.
-  keys['cK'] = {M.delete_line}
+  keys['cK'] = { function()
+    textadept.snippets._cancel_current()
+    M.delete_line()
+  end}
+
   -- opens a terminal in the locaton
   keys['cT'] = {M.open_terminal}
   -- opens the `~/.textadept/init.lua` file
