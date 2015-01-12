@@ -19,8 +19,8 @@ if not CURSES then
 end
 
 events.connect(events.INITIALIZED, function()
-  -- deletes a line ore a selection.
-  keys['cK'] = { function()
+  -- deletes a line or a selection. Also cancels current snippet.
+  keys['cK'] = {function()
     textadept.snippets._cancel_current()
     M.delete_line()
   end}
