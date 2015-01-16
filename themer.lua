@@ -1,7 +1,7 @@
 --- the Textadept theme changer.
 -- See @{README.md} for details on usage.
 -- @author Alejandro Baez <alejan.baez@gmail.com>
--- @copyright 2014
+-- @copyright 2015
 -- @license MIT (see LICENSE)
 -- @module themer
 

@@ -1,6 +1,13 @@
+--- the delete line function.
+-- See @{README.md} for details on usage.
+-- @author Alejandro Baez <alejan.baez@gmail.com>
+-- @copyright 2015
+-- @license MIT (see LICENSE)
+-- @module delete_line
+
 local M = {}
 
----[[ delete a line
+--- delete a line
 local function get_sel_lines()
   if #buffer:get_sel_text() == 0 then
     return buffer:line_from_position(buffer.current_pos),
@@ -15,7 +22,7 @@ local function get_sel_lines()
   end
 end
 
--- Deletes the currently selected lines
+--- deletes the currently selected lines.
 local function delete_lines()
   buffer:begin_undo_action()
   local startLine, endLine = get_sel_lines()
@@ -36,7 +43,6 @@ local function delete_lines()
   end
   buffer:end_undo_action()
 end
---]]
 
 setmetatable(M, {
   __call = delete_lines

@@ -1,4 +1,13 @@
--- Indent Folding
+--- the folding functions.
+-- See @{README.md} for details on usage.
+-- @author Alejandro Baez <alejan.baez@gmail.com>
+-- @copyright 2015
+-- @license MIT (see LICENSE)
+-- @module themer
+
+
+--- collapse folding for a line or current buffer line.
+-- @param line the line to fold.
 function collapse_fold(line)
   local line = line or buffer:line_from_position(buffer.current_pos)
     if buffer.fold_expanded[line] and buffer.line_visible[line] then
@@ -9,6 +18,8 @@ function collapse_fold(line)
     end
 end
 
+---  expand folding for a line or current buffer line.
+-- @param line see @{collapse_fold|line}.
 function expand_fold(line)
   local line = line or buffer:line_from_position(buffer.current_pos)
   if not buffer.fold_expanded[line] and buffer.line_visible[line] then
@@ -17,12 +28,14 @@ function expand_fold(line)
   end
 end
 
+--- collapse all folds.
 function collapse_folds()
   for i = 0, buffer.line_count - 1 do
     collapse_fold(i)
   end
 end
 
+--- expands all folds.
 function expand_folds()
   for i = 0, buffer.line_count - 1 do
     expand_fold(i)
