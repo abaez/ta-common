@@ -35,6 +35,21 @@ events.connect(events.INITIALIZED, function()
   -- selects all similar words and puts a cursor on it!
   keys["cG"] = {M.multiedit.select_all}
 
+  -- expand line or highlighted lines.
+  keys['aright'] = {function()
+    local line = #buffer:get_sel_text() == 0 and buffer:get_sel_text() or false
+    return M.folding.expand_fold(line)
+  end}
+  -- collapse line or highlighted lines.
+  keys['aleft'] = {function()
+    local line = #buffer:get_sel_text() == 0 and buffer:get_sel_text() or false
+    return M.folding.collapse_fold(line)
+  end}
+  -- expand all lines.
+  keys['caright'] = {M.folding.expand_folds}
+  -- collapse all lines.
+  keys['caleft'] = {M.folding.collapse_folds}
+
   -- reset
   keys["cesc"] = {_G.reset}
 end)
