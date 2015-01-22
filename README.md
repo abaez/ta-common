@@ -9,7 +9,7 @@ and algorithms I made myself for the use of making [Textadept](http://foicica.co
 more useful.
 
 ### MODULES
-#### Self Constructed.
+#### Self Constructed
 * `init`  holds the call to all modules and keybindings for ones in use.
 * `delete_line` deletes the current line or the highlighted lines.
 * `open_terminal` opens a terminal at the current directory of
@@ -18,7 +18,7 @@ more useful.
 in your themes directory, for every run.
 * `quick_edit` opens `_USERHOME/init.lua` file to edit.
 
-#### Borrowed Algorithms.
+#### Borrowed Algorithms
 * `comments.lua` continues comments structure from both single-line and block
 comments.
 * `folding` folds chunks of code by highlight or block.
@@ -38,3 +38,32 @@ comments.
     caright     folding.expand_folds for all blocks/highlights
     caleft      folding.collapse_folds for all blocks/highlights
     cesc        _G.reset resets Textadept.
+
+### LICENSE
+All modules/methods under [Borrowed Algorithms](#Borrowed.Algorithms) are under
+license in modules.
+All modules/methods under [Self Constructed](#Self.Constructed) are under the
+following license:
+
+The MIT License (MIT)
+
+Copyright (c) 2015 [Alejandro Baez](https://twitter.com/a_baez)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
