@@ -54,4 +54,12 @@ events.connect(events.INITIALIZED, function()
   keys["cesc"] = {_G.reset}
 end)
 
+events.connect('update_ui', function(updated)
+  M.elastic_tabstops.reset_visible(updated)
+end)
+
+events.connect('buffer_after_switch', function()
+  M.elastic_tabstops.reset_visible(1)
+end)
+
 return M
