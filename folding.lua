@@ -41,11 +41,6 @@ local function expand_folds()
   end
 end
 
-keys['aright'] = { expand_fold }
-keys['aleft'] = { collapse_fold }
-keys['caright'] = { expand_folds }
-keys['caleft'] = { collapse_folds }
-
 return {
   expand_fold    = expand_fold,
   collapse_fold  = collapse_fold,

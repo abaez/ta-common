@@ -38,12 +38,12 @@ events.connect(events.INITIALIZED, function()
   -- expand line or highlighted lines.
   keys['aright'] = {function()
     local line = #buffer:get_sel_text() == 0 and buffer:get_sel_text() or false
-    return M.folding.expand_fold(line)
+    M.folding.expand_fold(line)
   end}
   -- collapse line or highlighted lines.
   keys['aleft'] = {function()
     local line = #buffer:get_sel_text() == 0 and buffer:get_sel_text() or false
-    return M.folding.collapse_fold(line)
+    M.folding.collapse_fold(line)
   end}
   -- expand all lines.
   keys['caright'] = {M.folding.expand_folds}
@@ -54,11 +54,12 @@ events.connect(events.INITIALIZED, function()
   keys["cesc"] = {_G.reset}
 end)
 
-events.connect('update_ui', function(updated)
+
+events.connect(events.UPDATE_UI, function(updated)
   M.elastic_tabstops.reset_visible(updated)
 end)
 
-events.connect('buffer_after_switch', function()
+events.connect(events.BUFFER_AFTER_SWITCH, function()
   M.elastic_tabstops.reset_visible(1)
 end)
 
