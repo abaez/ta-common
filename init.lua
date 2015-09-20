@@ -17,8 +17,9 @@ for filename in lfs.dir(_USERHOME..'/modules/common/') do
 end
 
 if not CURSES then
-  -- changes the theme for every hour.
-  _G.CURRENT_THEME,_G.CURRENT_BACKGROUND = M.themer.change(06, 17)
+  -- changes the theme for each instance of textadept.
+  CURRENT_THEME, CURRENT_BACKGROUND = M.themer.change(
+    TIME_INITIAL or 06, TIME_FINAL or 17)
 end
 
 events.connect(events.INITIALIZED, function()

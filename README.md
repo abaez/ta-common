@@ -5,7 +5,7 @@ A collection of algorithms made or found by [Alejandro Baez](https://twitter.com
 
 ### DESCRIPTION
 As the subtitle said.This is a simple collection of algorithms made by others
-and algorithms I made myself for the use of making [Textadept](http://foicica.com/textadep)
+and algorithms I made myself for the use of making [Textadept](http://foicica.com/textadept)
 more useful.
 
 ### MODULES
@@ -24,8 +24,35 @@ comments.
 * `folding` folds chunks of code by highlight or block.
 * `findall` matches with all the occurance of the word under cursor.
 * `multiedit` highlights all matches from `findall` with an extra cursor.
+* `elastic_tabstops` [elastic tabstops](http://nickgravgaard.com/elastic-tabstops/)
+implementation for textadept.
 
-### KeyBindings
+### USAGE
+To enable, you need to add the following to your `_USERHOME/init.lua`:
+
+```
+require("common")
+```
+
+Much of the modules are self initializing. However, some do need to either be
+enabled under `common/init.lua` or to be enabled in `_USERHOME/init.lua`.
+
+* `themer`: The default randomly picks from themes in `_USERHOME/themes`. It
+chooses `-light` themes when the hour of the day is between `06` and `17`.
+It also uses `Inconsolata` as the font and `14` as the fontsize. YOu can change
+all this by adding the following to your `_USERHOME/init.lua` before common is
+loaded:
+
+```
+CURRENT_FONT = "Fantasque Sans Mono" -- font to choose.
+CURRENT_FONTSIZE = 13 -- fontsize to choose.
+CURRENT_THEME = "base16-atelierlakeside-light" -- chose a specific theme.
+CURRENT_BACKGROUND = "-light" -- need to enable for specific theme to be work.
+TIME_INITIAL = 09 -- initial time to start `-light` background theme.
+TIME_FINAL = 13 -- final time to start `-dark` background theme.
+```
+
+#### Keybindings
 
     Keys        Modules/Methods called
 
