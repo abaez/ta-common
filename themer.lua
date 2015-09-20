@@ -1,10 +1,13 @@
 --- the Textadept theme changer.
 -- See @{README.md} for details on usage.
--- @author Alejandro Baez <alejan.baez@gmail.com>
+-- @author [Alejandro Baez](https://twitter.com/a_baez)
 -- @copyright 2015
 -- @license MIT (see LICENSE)
 -- @module themer
 
+
+CURRENT_BACKGROUND = ""
+CURRENT_THEME = ""
 
 --- themes to choose from.
 -- A simple list to locate themes to apply. Follows the 8 hour work schedule
@@ -17,43 +20,42 @@ for theme in io.popen("ls ~/.textadept/themes"):lines() do
 end
 
 --- picks the theme by hour.
--- @function pick
--- @return a table that holds theme type(light, dark) and the theme.
-local function pick(t)
+-- @param themes a list of themes to choose from in _USERHOME/themes directory.
+-- @param ti time to start the light theme choice.
+-- @param tf time to end the light theme choice.
+local function pick(themes, ti, tf)
   local hour = os.date("*t")["hour"]
 
-  local background
-  if 06 < hour and  hour < 17 then
-    background = "-light"
-  else
-    background = "-dark"
+  local background = (ti < hour and hour < tf) and "-light" or "-dark"
+
+  local theme = ""
+  while not theme:match(background) do
+    theme = themes[math.random(1,#t)]
   end
 
-  local done = t[math.random(1,#t)]
-
-  while not done:match(background) do
-    done = t[math.random(1,#t)]
-  end
-
-  -- note: need to use for the refresh.
-  return {done, background}
+  return theme, background
 end
 
 
 --- changes the theme according to pick.
--- @function change
-local function change()
+-- @param ti see @{pick} for more info.
+-- @param tf see @{pick} for more info.
+local function change(ti, tf)
+  CURRENT_THEME, CURRENT_BACKGROUND = pick(by_17, ti, tf)
+
   ui.set_theme(
-    pick(by_17)[1],
+    CURRENT_THEME,
     {
-      font = "Inconsolata",
-      fontsize = 14
+      font = "Fantasque Sans Mono",
+      fontsize = 13
     }
   )
 end
 
+
 --- @export
 return {
   change = change,
-  background = pick(by_17)[2]
+  CURRENT_BACKGROUND = CURRENT_BACKGROUND,
+  CURRENT_THEME = CURRENT_THEME
 }
