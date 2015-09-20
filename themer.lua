@@ -37,7 +37,9 @@ end
 -- @param ti see @{pick} for more info.
 -- @param tf see @{pick} for more info.
 local function change(ti, tf)
-  CURRENT_THEME, CURRENT_BACKGROUND = pick(by_17, ti, tf)
+  if not (CURRENT_THEME and CURRENT_BACKGROUND) then
+    CURRENT_THEME, CURRENT_BACKGROUND = pick(by_17, ti, tf)
+  end
 
   ui.set_theme(
     CURRENT_THEME,
