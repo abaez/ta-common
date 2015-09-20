@@ -18,7 +18,7 @@ end
 
 if not CURSES then
   -- changes the theme for every hour.
-  M.themer.change()
+  _G.CURRENT_THEME,_G.CURRENT_BACKGROUND = M.themer.change(06, 17)
 end
 
 events.connect(events.INITIALIZED, function()

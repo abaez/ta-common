@@ -5,10 +5,6 @@
 -- @license MIT (see LICENSE)
 -- @module themer
 
-
-CURRENT_BACKGROUND = ""
-CURRENT_THEME = ""
-
 --- themes to choose from.
 -- A simple list to locate themes to apply. Follows the 8 hour work schedule
 -- for the brightness of the theme.
@@ -30,7 +26,7 @@ local function pick(themes, ti, tf)
 
   local theme = ""
   while not theme:match(background) do
-    theme = themes[math.random(1,#t)]
+    theme = themes[math.random(1,#themes)]
   end
 
   return theme, background
@@ -50,12 +46,12 @@ local function change(ti, tf)
       fontsize = 13
     }
   )
+
+  return CURRENT_THEME, CURRENT_BACKGROUND
 end
 
 
 --- @export
 return {
-  change = change,
-  CURRENT_BACKGROUND = CURRENT_BACKGROUND,
-  CURRENT_THEME = CURRENT_THEME
+  change = change
 }
