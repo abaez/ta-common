@@ -55,7 +55,9 @@ events.connect(events.INITIALIZED, function()
   keys["cesc"] = {_G.reset}
 end)
 
--- enable elastic_tabstops
-M.elastic_tabstops.enable()
+if TABSTOP_ENABLE then
+  -- enable elastic_tabstops
+  M.elastic_tabstops.enable()
+end
 
 return M
