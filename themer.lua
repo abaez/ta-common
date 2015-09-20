@@ -5,14 +5,13 @@
 -- @license MIT (see LICENSE)
 -- @module themer
 
---- themes to choose from.
--- A simple list to locate themes to apply. Follows the 8 hour work schedule
--- for the brightness of the theme.
--- @table by_17
-local by_17 = {}
+
+--- A simple list to locate themes to apply.
+-- @table base_16
+local base_16 = {}
 
 for theme in io.popen("ls ~/.textadept/themes"):lines() do
-  by_17[#by_17 + 1] = theme:gsub("%.lua", "")
+  base_16[#base_16 + 1] = theme:gsub("%.lua", "")
 end
 
 --- picks the theme by hour.
@@ -38,14 +37,14 @@ end
 -- @param tf see @{pick} for more info.
 local function change(ti, tf)
   if not (CURRENT_THEME and CURRENT_BACKGROUND) then
-    CURRENT_THEME, CURRENT_BACKGROUND = pick(by_17, ti, tf)
+    CURRENT_THEME, CURRENT_BACKGROUND = pick(base_16, ti, tf)
   end
 
   ui.set_theme(
     CURRENT_THEME,
     {
-      font = CURRENT_FONT,
-      fontsize = CURRENT_FONTSIZE
+      font = CURRENT_FONT or "Inconsolata",
+      fontsize = CURRENT_FONTSIZE or "14"
     }
   )
 
