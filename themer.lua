@@ -42,8 +42,8 @@ local function change(ti, tf)
   ui.set_theme(
     CURRENT_THEME,
     {
-      font = "Fantasque Sans Mono",
-      fontsize = 13
+      font = CURRENT_FONT,
+      fontsize = CURRENT_FONTSIZE
     }
   )
 
