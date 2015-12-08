@@ -40,8 +40,8 @@ keys['cT'] = {M.open_terminal}
 -- opens the `~/.textadept/init.lua` file
 keys['cae'] = {M.quick_edit}
 -- selects all similar words and puts a cursor on it!
-keys[not CURSES and "cG" or "mW"] = {M.multiedit.select_all_words}
-keys[not CURSES and "cD" or "mw"] = {M.multiedit.select_word}
+keys[not CURSES and "aW" or "mW"] = {M.multiedit.select_all_words}
+keys[not CURSES and "aw" or "mw"] = {M.multiedit.select_word}
 
 
 -- expand line or highlighted lines.

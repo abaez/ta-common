@@ -72,7 +72,8 @@ TABSTOP_ENABLE = true
     cK          delete_line() and textadept.snippets._cancel_current()
     cT          open_terminal
     cae         quick_edit
-    cG          multiedit.select_all()
+    aW          multiedit.select_all()
+    aw          multiedit.select_word()
     aright      folding.expand_fold for block/highlight
     aleft       folding.collapse_fold for block/highlight
     caright     folding.expand_folds for all blocks/highlights
