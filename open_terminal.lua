@@ -9,12 +9,12 @@ local M = {}
 
 --- opens a terminal of the current buffer's directory.
 local function openTerminalHere()
-  terminalString = TERMINALSTRING or "termite"
+  terminalString = TERMINAL_STRING or "termite"
   pathString = "~"
   if buffer.filename then
     pathString = (buffer.filename or ''):match('^.+[//]')
   end
-  io.popen(terminalString.." -d "..pathString.." &")
+  spawn(terminalString.." -d "..pathString.." &")
 end
 
 setmetatable(M, {
