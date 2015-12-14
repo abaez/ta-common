@@ -19,6 +19,7 @@ keys.command_mode = {
     ui.statusbar_text = 'INSERT MODE'
   end,
   [":"] = {
+    b = {ui.switch_buffer},
     w = {io.save_file},
     q = {io.close_buffer},
     Q = {quit}
