@@ -28,10 +28,12 @@ keys.command_mode = {
 keys['esc'] = function()
   keys.MODE = 'command_mode'
   ui.statusbar_text = "COMMAND MODE"
+  if CURSES then return end
   buffer.caret_style = buffer.CARETSTYLE_BLOCK
 end
 events.connect(events.UPDATE_UI, function()
   if keys.MODE == 'command_mode' then return end
   ui.statusbar_text = 'INSERT MODE'
+  if CURSES then return end
   buffer.caret_style = buffer.CARETSTYLE_LINE
 end)
