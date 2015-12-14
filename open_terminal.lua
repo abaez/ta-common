@@ -9,7 +9,7 @@ local M = {}
 
 --- opens a terminal of the current buffer's directory.
 local function openTerminalHere()
-  terminalString = "termite"
+  terminalString = TERMINALSTRING or "termite"
   pathString = "~"
   if buffer.filename then
     pathString = (buffer.filename or ''):match('^.+[//]')
