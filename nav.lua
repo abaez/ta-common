@@ -30,13 +30,6 @@ keys.command_mode = {
   ['w'] = buffer.word_right,
 }
 
-function insert_mode()
-  if keys.MODE == 'command_mode' then return end
-  ui.statusbar_text = 'INSERT MODE'
-  if CURSES then return end
-  buffer.caret_style = buffer.CARETSTYLE_LINE
-end
-
 keys['esc'] = function()
   keys.MODE = 'command_mode'
   ui.statusbar_text = "COMMAND MODE"
@@ -44,5 +37,10 @@ keys['esc'] = function()
   buffer.caret_style = buffer.CARETSTYLE_BLOCK
 end
 events.connect(events.UPDATE_UI, function()
-  insert_mode()
+  if keys.MODE == 'command_mode' then
+    ui.statusbar_text = "COMMAND MODE"; return
+  end
+  ui.statusbar_text = 'INSERT MODE'
+  if CURSES then return end
+  buffer.caret_style = buffer.CARETSTYLE_LINE
 end)
