@@ -23,8 +23,19 @@ keys.command_mode = {
     w = {io.save_file},
     q = {io.close_buffer},
     Q = {quit}
-  }
+  },
+
+  ['r'] = {function() keys.MODE = nil; textadept.editing.select_word()  end},
+  ['b'] = buffer.word_left,
+  ['w'] = buffer.word_right,
 }
+
+function insert_mode()
+  if keys.MODE == 'command_mode' then return end
+  ui.statusbar_text = 'INSERT MODE'
+  if CURSES then return end
+  buffer.caret_style = buffer.CARETSTYLE_LINE
+end
 
 keys['esc'] = function()
   keys.MODE = 'command_mode'
@@ -33,8 +44,5 @@ keys['esc'] = function()
   buffer.caret_style = buffer.CARETSTYLE_BLOCK
 end
 events.connect(events.UPDATE_UI, function()
-  if keys.MODE == 'command_mode' then return end
-  ui.statusbar_text = 'INSERT MODE'
-  if CURSES then return end
-  buffer.caret_style = buffer.CARETSTYLE_LINE
+  insert_mode()
 end)
