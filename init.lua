@@ -30,39 +30,47 @@ end
 
 --- ## Keys
 -- deletes a line or a selection. Also cancels current snippet.
-keys['cK'] = {function()
-  textadept.snippets._cancel_current()
-  M.delete_line()
-end}
+keys['cK'] =
+  function()
+    textadept.snippets._cancel_current()
+    M.delete_line()
+  end
 
 -- opens a terminal in the locaton
-keys['cT'] = {M.open_terminal}
+keys['cT'] =
+  function() M.open_terminal() end
 -- opens the `~/.textadept/init.lua` file
-keys['cae'] = {M.quick_edit}
+keys['cae'] =
+  function() M.quick_edit() end
 -- selects all similar words and puts a cursor on it!
-keys[not CURSES and "aW" or "mW"] = {M.multiedit.select_all_words}
-keys[not CURSES and "aw" or "mw"] = {M.multiedit.select_word}
-
+keys[not CURSES and "aW" or "mW"] =
+  function() M.multiedit.select_all_words() end
+keys[not CURSES and "aw" or "mw"] =
+  function() M.multiedit.select_word() end
 
 -- expand line or highlighted lines.
-keys['aright'] = {function()
-  local line = #buffer:get_sel_text() == 0 and buffer:get_sel_text() or false
-  M.folding.expand_fold(line)
-end}
+keys['aright'] =
+  function()
+    local line = #buffer:get_sel_text() == 0 and buffer:get_sel_text() or false
+    M.folding.expand_fold(line)
+  end
 -- collapse line or highlighted lines.
-keys['aleft'] = {function()
-  local line = #buffer:get_sel_text() == 0 and buffer:get_sel_text() or false
-  M.folding.collapse_fold(line)
-end}
+keys['aleft'] =
+  function()
+    local line = #buffer:get_sel_text() == 0 and buffer:get_sel_text() or false
+    M.folding.collapse_fold(line)
+  end
 
 -- expand all lines.
-keys['caright'] = {M.folding.expand_folds}
+keys['caright'] =
+  function() M.folding.expand_folds() end
 -- collapse all lines.
-keys['caleft'] = {M.folding.collapse_folds}
+keys['caleft'] =
+  function() M.folding.collapse_folds() end
 
 -- reset
-keys["cesc"] = {_G.reset}
-
+keys["cesc"] =
+  function() _G.reset() end
 
 
 return M
