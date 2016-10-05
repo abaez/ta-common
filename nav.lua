@@ -5,37 +5,55 @@
 -- @module nav
 
 keys.command_mode = {
-  ['h'] = buffer.char_left,
-  ['j'] = buffer.line_down,
-  ['k'] = buffer.line_up,
-  ['l'] = buffer.char_right,
-  ['i'] = function()
-    keys.MODE = nil
-    ui.statusbar_text = 'INSERT MODE'
-  end,
-  ['o'] = function()
-    buffer:line_end(); buffer:new_line()
-    keys.MODE = nil
-    ui.statusbar_text = 'INSERT MODE'
-  end,
+  ['h'] =
+    function() buffer.char_left() end,
+  ['j'] =
+    function() buffer.line_down() end,
+  ['k'] =
+    function() buffer.line_up() end,
+  ['l'] =
+    function() buffer.char_right() end,
+  ['i'] =
+    function()
+      keys.MODE = nil
+      ui.statusbar_text = 'INSERT MODE'
+    end,
+  ['o'] =
+    function()
+      buffer:line_end(); buffer:new_line()
+      keys.MODE = nil
+      ui.statusbar_text = 'INSERT MODE'
+    end,
   [":"] = {
-    b = {ui.switch_buffer},
-    w = {io.save_file},
-    q = {io.close_buffer},
-    Q = {quit}
+    b =
+      function() ui.switch_buffer() end,
+    w =
+      function() io.save_file() end,
+    q =
+      function() io.close_buffer() end,
+    Q =
+      function() quit() end
   },
 
-  ['r'] = {function() keys.MODE = nil; textadept.editing.select_word()  end},
-  ['b'] = buffer.word_left,
-  ['w'] = buffer.word_right,
+  ['r'] =
+    function()
+      keys.MODE = nil
+      textadept.editing.select_word()
+    end,
+  ['b'] =
+    function() buffer.word_left() end,
+  ['w'] =
+    function() buffer.word_right() end,
 }
 
-keys['esc'] = function()
-  keys.MODE = 'command_mode'
-  ui.statusbar_text = "COMMAND MODE"
-  if CURSES then return end
-  buffer.caret_style = buffer.CARETSTYLE_BLOCK
-end
+keys['esc'] =
+  function()
+    keys.MODE = 'command_mode'
+    ui.statusbar_text = "COMMAND MODE"
+    if CURSES then return end
+    buffer.caret_style = buffer.CARETSTYLE_BLOCK
+  end
+
 events.connect(events.UPDATE_UI, function()
   if keys.MODE == 'command_mode' then
     ui.statusbar_text = "COMMAND MODE"; return
