@@ -56,9 +56,10 @@ keys['esc'] =
 
 events.connect(events.UPDATE_UI, function()
   if keys.MODE == 'command_mode' then
-    ui.statusbar_text = "COMMAND MODE"; return
+    ui.statusbar_text = "COMMAND MODE"
+  else
+    ui.statusbar_text = 'INSERT MODE'
+    if CURSES then return end
+    buffer.caret_style = buffer.CARETSTYLE_LINE
   end
-  ui.statusbar_text = 'INSERT MODE'
-  if CURSES then return end
-  buffer.caret_style = buffer.CARETSTYLE_LINE
 end)
