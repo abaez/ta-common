@@ -11,7 +11,9 @@
 local base_16 = {}
 
 for theme in io.popen("ls ~/.textadept/themes"):lines() do
-  base_16[#base_16 + 1] = theme:gsub("%.lua", "")
+  if theme:match("%.lua") then
+    base_16[#base_16 + 1] = theme:gsub("%.lua", "")
+  end
 end
 
 --- picks the theme by hour.
@@ -25,7 +27,7 @@ local function pick(themes, ti, tf)
 
   local theme = ""
   while not theme:match(background) do
-    theme = themes[math.random(1,#themes)]
+    theme = themes[os.time() % #themes]
   end
 
   return theme, background
