@@ -17,6 +17,7 @@ more useful.
 * `themer` changes to a different them from [base16-builder](https://github.com/chriskempson/base16-builder)
 in your themes directory, for every run.
 * `quick_edit` opens `_USERHOME/init.lua` file to edit.
+* `nav` a very simple *hjkl* navigation.
 
 #### Borrowed Algorithms
 * `comments.lua` continues comments structure from both single-line and block
@@ -63,6 +64,14 @@ your `_USERHOME/init.lua`:
 ```
 -- enable elastic_tabstops
 TABSTOP_ENABLE = true
+```
+
+* `nav` is enabled by default. To disble simple add this to your
+`_USERHOME/init.lua`:
+
+```
+-- disable nav
+NAV_DISABLE = true
 ```
 
 #### Keybindings
